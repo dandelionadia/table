@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Table } from './Table.js'
+
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [
+        {
+          name: 'name name',
+          number: '3'
+        },
+        {
+          name: 'no name',
+          number: '99'
+        }
+      ]
+    }
+  }
+
+  componentDidMount() {
+    // get data from backend
+    fetch('http://localhost:3004/data').then((response) => {
+      // change data format to json
+      return response.json()
+    }).then((data) => {
+      // change state
+      this.setState({
+        data: data
+      })
+    })
+  }
+
+  render() {
+    const { data } = this.state
+    return (
+      <div className="App" >
+        <Table data={data} />
+      </div>
+    );
+  }
 }
 
-export default App;
+export { App };

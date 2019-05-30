@@ -1,5 +1,4 @@
 import React from 'react';
-import './table.scss'
 
 class Table extends React.Component {
 
@@ -21,6 +20,13 @@ class Table extends React.Component {
             <div>
                 <table className="table">
                     {this.renderheaders()}
+                    {this.props.data.map((row) => (
+                        <tr className="table__row">
+                            {Object.values(row).map((item) => (
+                                <td>{item}</td>
+                            ))}
+                        </tr>
+                    ))}
                 </table>
             </div>
         )

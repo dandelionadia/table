@@ -1,4 +1,10 @@
 .table {
     width: 100%;
-    border-spacing: 10px;
+    // border-spacing: 10px;
+    background-color: $color-table;
+
+    &__row {
+        background-color: $color-columns;
+        text-align: center;
+    }
 }

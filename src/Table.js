@@ -1,10 +1,9 @@
 import React from 'react';
 
 class Table extends React.Component {
-
-    renderheaders = () => {
-        const foo = this.props.data[0]
-        const keys = Object.keys(foo)
+    renderHeaders = () => {
+        const takeData = this.props.data[0].data
+        const keys = Object.keys(takeData)
         return (
             <tr>
                 {keys.map((key) => (
@@ -14,21 +13,36 @@ class Table extends React.Component {
         )
     }
 
+    renderChild = (kids) => {
+        const childHeading = Object.keys(kids)[0]
+        return (
+            <tr>
+                <td colSpan="10" className="table--nested">
+                    <h4>{childHeading}</h4>
+                    <Table data={kids[childHeading].records} />
+                </td>
+            </tr>
+        )
+    }
+
     render() {
 
         return (
-            <div>
-                <table className="table">
-                    {this.renderheaders()}
-                    {this.props.data.map((row) => (
+            <table className="table">
+                {this.renderHeaders()}
+                {this.props.data.map((row) => (
+                    <>
                         <tr className="table__row">
-                            {Object.values(row).map((item) => (
+                            {Object.values(row.data).map((item) => (
                                 <td>{item}</td>
                             ))}
                         </tr>
-                    ))}
-                </table>
-            </div>
+                        {
+                            row.kids && Object.keys(row.kids).length > 0 && this.renderChild(row.kids)
+                        }
+                    </>
+                ))}
+            </table>
         )
     }
 }

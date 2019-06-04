@@ -1,0 +1,27 @@
+.table {
+    background-color: $color-table;
+
+    &__row {
+        background-color: $color-columns;
+    }
+
+    &--nested {
+        background-color: #fff;
+        padding: 20px 10px;
+    }
+
+    &__section {
+        border: 1px solid #EDECEC;
+        padding: 5px;
+        margin: 0;
+        text-align: left;
+    }
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 5px;
+}

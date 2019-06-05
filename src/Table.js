@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoIosArrowForward } from "react-icons/io";
+import { TableRow } from './TableRow'
 
 
 class Table extends React.Component {
@@ -35,17 +35,9 @@ class Table extends React.Component {
             <table className="table">
                 {this.renderHeaders()}
                 {this.props.data.map((row) => {
-                    const hasChildren = row.kids && Object.keys(row.kids).length > 0
+
                     return (
-                        <>
-                            <tr className="table__row">
-                                <td>{hasChildren && <IoIosArrowForward />}</td>
-                                {Object.values(row.data).map((item) => (
-                                    <td>{item}</td>
-                                ))}
-                            </tr>
-                            {hasChildren && this.renderChild(row.kids)}
-                        </>
+                        <TableRow data={row} />
                     )
                 })}
             </table>

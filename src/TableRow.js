@@ -18,7 +18,7 @@ class TableRow extends React.Component {
     }
 
     render() {
-        const { data: row } = this.props
+        const { data: row, renderChildren } = this.props
         const { isOpen } = this.state
         const hasChildren = row.kids && Object.keys(row.kids).length > 0
 
@@ -26,11 +26,12 @@ class TableRow extends React.Component {
             <>
                 <tr className="table__row">
                     <td onClick={this.handleRowClick}>{hasChildren && (isOpen ? <IoIosArrowDown /> : <IoIosArrowForward />)}</td>
+
                     {Object.values(row.data).map((item) => (
                         <td>{item}</td>
                     ))}
                 </tr>
-                {/* {hasChildren && this.renderChild(row.kids)} */}
+                {hasChildren && isOpen && renderChildren(row.kids)}
             </>
         )
     }

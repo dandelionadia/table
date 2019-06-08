@@ -3,6 +3,7 @@ import { TableRow } from './TableRow'
 
 
 class Table extends React.Component {
+
     renderHeaders = () => {
         const takeData = this.props.data[0].data
         const keys = Object.keys(takeData)
@@ -37,7 +38,7 @@ class Table extends React.Component {
                 {this.props.data.map((row) => {
 
                     return (
-                        <TableRow data={row} />
+                        <TableRow data={row} renderChildren={this.renderChild} />
                     )
                 })}
             </table>

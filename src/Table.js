@@ -38,7 +38,8 @@ class Table extends React.Component {
                 {this.props.data.map((row) => {
 
                     return (
-                        <TableRow data={row} renderChildren={this.renderChild} />
+                        <TableRow data={row} renderChildren={this.renderChild}
+                        />
                     )
                 })}
             </table>
